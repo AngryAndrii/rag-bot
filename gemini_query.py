@@ -8,7 +8,10 @@ TOKEN = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=TOKEN)
 
-result = client.models.embed_content(
+
+def get_embed(text):
+    result = client.models.embed_content(
         model="gemini-embedding-2",
-        contents="What is the meaning of life?"
-)
+        contents=text
+    )
+    return result.embeddings[0].values
